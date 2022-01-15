@@ -30,7 +30,7 @@ firmware :
 		$(RM) -rf firmware_tmp ; \
 		mkdir firmware_tmp ; \
 		while read FILE; do \
-			curl --output-dir firmware_tmp -LO "$(FW_BASE_URL)/$$FILE" ; \
+			curl --output firmware_tmp/$$FILE -L "$(FW_BASE_URL)/$$FILE" ; \
 		done < firmware.txt ; \
 		mv firmware_tmp firmware ; \
 	fi
