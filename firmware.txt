@@ -1,0 +1,5 @@
+fixup4.dat
+start4.elf
+config.txt
+bcm2711-rpi-4-b.dtb
+overlay_map.dtb
