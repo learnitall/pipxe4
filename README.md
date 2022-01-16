@@ -22,14 +22,18 @@ adjust the EEPROM), boot up your Raspberry Pi and adjust the
 `BOOT_ORDER` configuration [in the bootloader] to include PXE booting
 from the network.
 1. Shut down your Raspberry Pi.
-2. Download [pipxe4.zip] and copy the contents into your tftp server.
-3. Setup your dhcp server to let the Raspberry Pi perform its standard
+1. Download [pipxe4.zip] and copy the contents into your tftp server.
+1. Setup your dhcp server to let the Raspberry Pi perform its standard
 network boot with the aforementioned tftp server. The Pi will identify
 itself with the following vendor class: `PXEClient:Arch:00000:UNDI:002001`
+1. Setup your dhcp server to handle when the Raspberry Pi performs a
+PXE boot using the UEFI firmware it just pulled from your tftp server.
+You need to set the boot file to the built iPXE efi firmware.
+This by default is located at `efi/boot/bootaa64.efi` within `pipxe4.zip`.
+In this stage, the Pi will identify itself with the following vendor
+class: `PXEClient:Arch:00011:UNDI:003000`
 1. Setup your dhcp server to handle when the Raspberry Pi loads the
 iPXE firmware from your tftp server and begins booting using iPXE.
-In this stage, the Pi will identify itself with the following
-vendor class: `PXEClient:Arch:00011:UNDI:003000`.
 1. Power on your Raspberry Pi.
 
 ### USB Drive
