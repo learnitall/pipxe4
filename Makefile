@@ -1,4 +1,4 @@
-FW_BASE_URL		:= https://github.com/raspberrypi/firmware/branches/stable/boot
+FW_BASE_URL		:= https://github.com/raspberrypi/firmware/raw/stable/boot
 
 EFI_BUILD	:= RELEASE
 EFI_ARCH	:= AARCH64
@@ -10,7 +10,7 @@ EFI_FD		:= Build/RPi4/$(EFI_BUILD)_$(EFI_TOOLCHAIN)/FV/RPI_EFI.fd
 
 IPXE_CROSS	:= aarch64-linux-gnu-
 IPXE_SRC	:= ipxe/src
-IPXE_TGT	:= bin-arm64-efi/rpi.efi
+IPXE_TGT	:= bin-arm64-efi/ipxe.efi
 IPXE_EFI	:= $(IPXE_SRC)/$(IPXE_TGT)
 
 BASETOOLS_SRC   := edk2/BaseTools
@@ -30,6 +30,7 @@ firmware :
 		$(RM) -rf firmware_tmp ; \
 		mkdir firmware_tmp ; \
 		while read FILE; do \
+			echo "$(FW_BASE_URL)/$$FILE" ; \
 			curl --output firmware_tmp/$$FILE -L "$(FW_BASE_URL)/$$FILE" ; \
 		done < firmware.txt ; \
 		mv firmware_tmp firmware ; \
