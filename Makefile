@@ -40,6 +40,9 @@ efi : $(EFI_FD)
 efi-basetools : submodules
 	$(MAKE) -C edk2/BaseTools
 
+disable-ram-limit : submodules
+	sed -i 's/gRaspberryPiTokenSpaceGuid.PcdRamLimitTo3GB|L"RamLimitTo3GB"|gConfigDxeFormSetGuid|0x0|1/gRaspberryPiTokenSpaceGuid.PcdRamLimitTo3GB|L"RamLimitTo3GB"|gConfigDxeFormSetGuid|0x0|0/' -i $(EFI_DSC)
+
 $(EFI_FD) : submodules efi-basetools
 	. ./edksetup.sh && \
 	build -b $(EFI_BUILD) -a $(EFI_ARCH) -t $(EFI_TOOLCHAIN) \
@@ -79,10 +82,14 @@ tag :
 image : submodules
 	podman build . -t pipxe4
 
-image_build :
+run_image :
 	podman run -it --name pipxe4 pipxe4
+
+image_copy :
 	podman cp pipxe4:/opt/pipxe4.img pipxe4.img
 	podman cp pipxe4:/opt/pipxe4.zip pipxe4.zip
+
+image_build : run_image image_copy
 
 clean :
 	$(RM) -rf firmware Build pipxe4 pipxe4 pipxe4

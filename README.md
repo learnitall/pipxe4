@@ -102,6 +102,26 @@ Cleanup:
     podman rmi pipxe4
     podman rm pipxe4
 
+
+## 3 GB Ram Limit
+
+By default, the edk2 UEFI firmware limits the amount of ram to 3GB by default.
+A version of the firmware with this setting disabled by default can be built
+as follows:
+
+    make image
+    podman run --name pipxe4 -it pipxe4 /bin/bash
+    # Within the container:
+    make -C /opt disable-ram-limit
+    make -C /opt
+    exit
+    # Copy results
+    make image_copy
+
+For more information on this, check out:
+
+* [TianoCore EKD2's Notes]
+* [Notice in pftf/RPi4 Readme]
 ## How it works
 
 The [Raspberry Pi Boot] process essentially does the following:
@@ -148,3 +168,4 @@ subproject licensing terms for more details:
 [Second Stage Bootloader]: https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#second-stage-bootloader
 [First Stage Bootloader]: https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#first-stage-bootloader
 [TianoCore EKD2's Notes]: https://github.com/tianocore/edk2-platforms/tree/master/Platform/RaspberryPi/RPi4#notes
+[Notice in pftf/RPi4 Readme]: https://github.com/pftf/RPi4/blob/master/Readme.md#initial-notice
