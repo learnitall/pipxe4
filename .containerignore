@@ -1,1 +1,6 @@
 **/.git
+Build/
+firmware/
+pipxe4/
+pipxe4.img
+pipxe4.zip
