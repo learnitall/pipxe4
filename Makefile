@@ -12,6 +12,7 @@ IPXE_CROSS	:= aarch64-linux-gnu-
 IPXE_SRC	:= ipxe/src
 IPXE_TGT	:= bin-arm64-efi/ipxe.efi
 IPXE_EFI	:= $(IPXE_SRC)/$(IPXE_TGT)
+IPXE_CONF_GEN   := $(IPXE_SRC)/config/general.h
 
 BASETOOLS_SRC   := edk2/BaseTools
 
@@ -42,7 +43,10 @@ efi-basetools : submodules
 	$(MAKE) -C edk2/BaseTools
 
 disable-ram-limit : submodules
-	sed -i 's/gRaspberryPiTokenSpaceGuid.PcdRamLimitTo3GB|L"RamLimitTo3GB"|gConfigDxeFormSetGuid|0x0|1/gRaspberryPiTokenSpaceGuid.PcdRamLimitTo3GB|L"RamLimitTo3GB"|gConfigDxeFormSetGuid|0x0|0/' -i $(EFI_DSC)
+	sed 's/gRaspberryPiTokenSpaceGuid.PcdRamLimitTo3GB|L"RamLimitTo3GB"|gConfigDxeFormSetGuid|0x0|1/gRaspberryPiTokenSpaceGuid.PcdRamLimitTo3GB|L"RamLimitTo3GB"|gConfigDxeFormSetGuid|0x0|0/' -i $(EFI_DSC)
+
+enable-gzip : submodules
+	sed 's/\/\/#define.*IMAGE_GZIP.*/#define IMAGE_GZIP/' -i $(IPXE_CONF_GEN)
 
 $(EFI_FD) : submodules efi-basetools
 	. ./edksetup.sh && \

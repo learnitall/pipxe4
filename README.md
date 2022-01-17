@@ -126,6 +126,18 @@ For more information on this, check out:
 
 * [TianoCore EKD2's Notes]
 * [Notice in pftf/RPi4 Readme]
+
+## GZIP Image Support
+
+By default iPXE does not come built with GZIP image support. To enable this,
+run the same steps as above, but rather than `make -C /opt disable-ram-limit`,
+use: `make -C /opt enable-gzip`
+
+For more information on this, check out:
+
+* [ipxe/ipxe#d7bc9e9]
+* [imgextract]
+
 ## How it works
 
 The [Raspberry Pi Boot] process essentially does the following:
@@ -173,3 +185,5 @@ subproject licensing terms for more details:
 [First Stage Bootloader]: https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#first-stage-bootloader
 [TianoCore EKD2's Notes]: https://github.com/tianocore/edk2-platforms/tree/master/Platform/RaspberryPi/RPi4#notes
 [Notice in pftf/RPi4 Readme]: https://github.com/pftf/RPi4/blob/master/Readme.md#initial-notice
+[imgextract]: https://ipxe.org/cmd/imgextract
+[ipxe/ipxe#d7bc9e9]: https://github.com/ipxe/ipxe/commit/d7bc9e9d67c2e7a4d2006d2c48485b3265aea038
