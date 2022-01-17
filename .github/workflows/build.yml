@@ -16,14 +16,14 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y -o Acquire::Retries=50 \
-                           gcc-aarch64-linux-gnu iasl mtools subversion \
+                           gcc-aarch64-linux-gnu iasl mtools \
                            lzma-dev uuid-dev
 
       - name: Sources (git)
         run: |
           make submodules
 
-      - name: Sources (subversion)
+      - name: Sources (firmware)
         run: |
           make firmware
 
@@ -35,7 +35,7 @@ jobs:
         run: |
           make ipxe -j 4
 
-      - name: Construct
+      - name: Make
         run: |
           make
 
