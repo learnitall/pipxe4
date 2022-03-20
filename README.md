@@ -109,8 +109,8 @@ Cleanup:
 
 ## 3 GB Ram Limit
 
-By default, the edk2 UEFI firmware limits the amount of ram to 3GB by default.
-A version of the firmware with this setting disabled by default can be built
+By default, the edk2 UEFI firmware limits the amount of ram to 3GB.
+A version of the firmware with this setting disabled by default instead can be built
 as follows:
 
     make image
