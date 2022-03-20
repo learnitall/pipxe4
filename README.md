@@ -129,7 +129,7 @@ For more information on this, check out:
 
 ## GZIP Image Support
 
-By default iPXE does not come built with GZIP image support. To enable this,
+By default, iPXE does not come built with GZIP image support. To enable this,
 run the same steps as above, but rather than `make -C /opt disable-ram-limit`,
 use: `make -C /opt enable-gzip`
 
@@ -137,6 +137,18 @@ For more information on this, check out:
 
 * [ipxe/ipxe#d7bc9e9]
 * [imgextract]
+
+## iPXE by Default
+
+The edk2 firmware will always attempt to boot from detected disks before
+attempting to boot with iPXE. This makes provision management services,
+such as [The Foreman] or [foremanlite], unable to properly manage the device's
+lifecycle and perform tasks such as re-provisioning. To get around this, a
+patch for the edk2 firmware is provided, which modified the boot order to always
+attempt an iPXE boot from the first detected network device.
+
+To enable this, use the same steps as with other included patches in this
+repository, except use the target `default-pxe-boot`
 
 ## How it works
 
@@ -187,3 +199,5 @@ subproject licensing terms for more details:
 [Notice in pftf/RPi4 Readme]: https://github.com/pftf/RPi4/blob/master/Readme.md#initial-notice
 [imgextract]: https://ipxe.org/cmd/imgextract
 [ipxe/ipxe#d7bc9e9]: https://github.com/ipxe/ipxe/commit/d7bc9e9d67c2e7a4d2006d2c48485b3265aea038
+[The Foreman]: https://theforeman.org
+[foremanlite]: https://github.com/learnitall/foremanlite
