@@ -150,6 +150,11 @@ attempt an iPXE boot from the first detected network device.
 To enable this, use the same steps as with other included patches in this
 repository, except use the target `default-pxe-boot`
 
+For more information on this, check out:
+
+* [tianocore/edk2-platforms#f88bff4]
+* [Compile EDK2 to set boot order to PXE (edk2.groups.io)]
+
 ## How it works
 
 The [Raspberry Pi Boot] process essentially does the following:
@@ -201,3 +206,5 @@ subproject licensing terms for more details:
 [ipxe/ipxe#d7bc9e9]: https://github.com/ipxe/ipxe/commit/d7bc9e9d67c2e7a4d2006d2c48485b3265aea038
 [The Foreman]: https://theforeman.org
 [foremanlite]: https://github.com/learnitall/foremanlite
+[Compile EDK2 to set boot order to PXE (edk2.groups.io)]: https://edk2.groups.io/g/discuss/topic/80312657?p=Created%2C%2C%2C20%2C2%2C0%2C0
+[tianocore/edk2-platforms#f88bff4]: https://github.com/tianocore/edk2-platforms/commit/f88bff4d000c69b1135969dbeafccaeb782dcdf3
