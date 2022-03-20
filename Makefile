@@ -49,7 +49,7 @@ enable-gzip : submodules
 	sed 's/\/\/#define.*IMAGE_GZIP.*/#define IMAGE_GZIP/' -i $(IPXE_CONF_GEN)
 
 default-boot-pxe : submodules
-	cp PlatformBm.c.pxealways.take2 edk2-platforms/Platform/RaspberryPi/Library/PlatformBootManagerLib/PlatformBm.c
+	cp PlatformBm.c.pxealways edk2-platforms/Platform/RaspberryPi/Library/PlatformBootManagerLib/PlatformBm.c
 
 $(EFI_FD) : submodules efi-basetools
 	. ./edksetup.sh && \
